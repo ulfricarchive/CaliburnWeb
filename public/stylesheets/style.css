@@ -16,45 +16,26 @@ body {
 .nav-link {
 	color: white;
 	font-weight: 800;
-	font-size: .80em;
+	font-size: .85em;
 }
+
+.nav-item {
+	padding: 0 50px 0 50px;
+}
+
+.nav-store {
+	background: #fd5651;
+	border-radius: 10%;
+}
+
 
 #navbarSupportedContent ul li:hover a { 
 	color:#fd5651;
 }
 
 .navbar-collapse {
-	margin-left: 10%;
+	margin-left: 5%;
 	position: relative;
-}
-
-.icon-area {
-	list-style: none;
-	position: absolute;
-	right: 125px;
-
-}
-
-.icon-area li {
-	float: right;
-	padding: 0 .5rem;
-}
-
-.shop {
-	padding: .5rem 0 !important;
-}
-
-.messages {
-	padding: .5rem 0 !important;
-}
-
-.profile-area {
-	background-color: #05051a;
-	list-style: none;
-	height: 100%;
-	width: 120px;
-	position: absolute;
-	right: 0px;
 }
 
 .navbar-nav {
