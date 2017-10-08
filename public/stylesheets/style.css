@@ -25,13 +25,12 @@ body {
 }
 
 .nav-store {
-	background: #fd5651;
+	background-color: #ff7f7d;
 	border-radius: 10%;
 }
 
-
 #navbarSupportedContent ul li:hover a { 
-	color:#fd5651;
+	color:#ff7f7d;
 }
 
 .navbar-collapse {
