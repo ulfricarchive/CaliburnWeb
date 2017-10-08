@@ -29,7 +29,7 @@ body {
 	border-radius: 10%;
 }
 
-#navbarSupportedContent ul li:hover a { 
+#navbarSupportedContent ul li a:hover { 
 	color:#ff7f7d;
 }
 
