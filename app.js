@@ -1,15 +1,41 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var hbs = require('express-handlebars');
+"use strict";
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const hbs = require('express-handlebars');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+require('dotenv').config();
+const Snoowrap = require('snoowrap');
+const Snoostorm = require('snoostorm');
 
-var app = express();
+const index = require('./routes/index');
+const users = require('./routes/users');
+
+let app = express();
+
+const reddit = new Snoowrap({
+  userAgent: 'reddit.us.caliburn.1.0.0',
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  username: process.env.REDDIT_USER,
+  password: process.env.REDDIT_PASS
+});
+
+const client = new Snoostorm(reddit);
+
+const redditStreamOpts = {
+  subreddit: 'all',
+  results: 25
+};
+
+let submissions = client.SubmissionStream(redditStreamOpts);
+submissions.on("submission", (submission) => {
+  console.log(submission);
+});
+
 
 // view engine setup
 app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts/'}));

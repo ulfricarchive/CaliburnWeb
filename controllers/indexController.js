@@ -1,5 +1,5 @@
 exports.index = function(req, res) {
-    res.render('index', { title: 'Home'});
+    res.redirect('/news');
 };
 
 exports.play = function(req, res) {

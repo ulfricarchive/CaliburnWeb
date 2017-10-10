@@ -1,5 +1,5 @@
 exports.leaderboards_list = function(req, res) {
-    res.render('leaderboards', { title: 'Leaderboards'});
+    res.render('leaderboards/leaderboards', { title: 'Leaderboards'});
 };
 
 exports.leaderboards_details = function(req, res) {
