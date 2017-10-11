@@ -27,13 +27,18 @@ const reddit = new Snoowrap({
 const client = new Snoostorm(reddit);
 
 const redditStreamOpts = {
-  subreddit: 'all',
-  results: 25
+  subreddit: 'caliburn',
+  results: 1
 };
 
 let submissions = client.SubmissionStream(redditStreamOpts);
 submissions.on("submission", (submission) => {
-  console.log(submission);
+  if (submission.stickied === false) {
+    return false;
+  }
+  
+  let data = submissions.selftext_html;
+  module.exports = data;
 });
 
 
