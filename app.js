@@ -7,40 +7,19 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const hbs = require('express-handlebars');
 
-require('dotenv').config();
-const Snoowrap = require('snoowrap');
-const Snoostorm = require('snoostorm');
-
 const index = require('./routes/index');
 const users = require('./routes/users');
+const redditService = require('./services/news/redditService');
 
 let app = express();
 
-const reddit = new Snoowrap({
-	userAgent: 'reddit.us.caliburn.1.0.0',
-	clientId: process.env.CLIENT_ID,
-	clientSecret: process.env.CLIENT_SECRET,
-	username: process.env.REDDIT_USER,
-	password: process.env.REDDIT_PASS
-});
-
-const client = new Snoostorm(reddit);
-
-const redditStreamOpts = {
-	subreddit: 'caliburn',
-	results: 1
-};
-
-let submissions = client.SubmissionStream(redditStreamOpts);
-submissions.on('submission', (submission) => {
-	if (submission.stickied === false) {
-		return false;
+redditService.on('submission', (submission) => {
+	if (submission.stickied !== true) {
+		console.log('New submission NOT stickied: ' + submission.title);
+		return;
 	}
-  
-	let data = submissions.selftext_html;
-	module.exports = data;
+	console.log('New submission stickied: ' + submission.title);
 });
-
 
 // view engine setup
 app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts/'}));
