@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -17,28 +17,28 @@ const users = require('./routes/users');
 let app = express();
 
 const reddit = new Snoowrap({
-  userAgent: 'reddit.us.caliburn.1.0.0',
-  clientId: process.env.CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET,
-  username: process.env.REDDIT_USER,
-  password: process.env.REDDIT_PASS
+	userAgent: 'reddit.us.caliburn.1.0.0',
+	clientId: process.env.CLIENT_ID,
+	clientSecret: process.env.CLIENT_SECRET,
+	username: process.env.REDDIT_USER,
+	password: process.env.REDDIT_PASS
 });
 
 const client = new Snoostorm(reddit);
 
 const redditStreamOpts = {
-  subreddit: 'caliburn',
-  results: 1
+	subreddit: 'caliburn',
+	results: 1
 };
 
 let submissions = client.SubmissionStream(redditStreamOpts);
-submissions.on("submission", (submission) => {
-  if (submission.stickied === false) {
-    return false;
-  }
+submissions.on('submission', (submission) => {
+	if (submission.stickied === false) {
+		return false;
+	}
   
-  let data = submissions.selftext_html;
-  module.exports = data;
+	let data = submissions.selftext_html;
+	module.exports = data;
 });
 
 
@@ -60,20 +60,20 @@ app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+	var err = new Error('Not Found');
+	err.status = 404;
+	next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function(err, req, res) {
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+	// render the error page
+	res.status(err.status || 500);
+	res.render('error');
 });
 
 module.exports = app;
