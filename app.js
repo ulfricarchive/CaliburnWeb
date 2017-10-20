@@ -13,12 +13,15 @@ const redditService = require('./services/news/redditService');
 
 let app = express();
 
+let postData = {};
 redditService.on('submission', (submission) => {
 	if (submission.stickied !== true) {
-		console.log('New submission NOT stickied: ' + submission.title);
+		console.log('New submission NOT stickied: ' + submission);
 		return;
 	}
-	console.log('New submission stickied: ' + submission.title);
+	console.log('New submission stickied: ' + submission);
+	postData.title = submission.title;
+	postData.content = submission.text;
 });
 
 // view engine setup

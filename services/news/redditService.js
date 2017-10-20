@@ -14,7 +14,7 @@ const reddit = new Snoowrap({
 const client = new Snoostorm(reddit);
 
 const redditStreamOpts = {
-	subreddit: 'all',
+	subreddit: 'arcane',
 	results: 2
 };
 
