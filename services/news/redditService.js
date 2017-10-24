@@ -39,6 +39,9 @@ redditData.filterPostRequirements = function(submission) {
 	}
 
 	console.log(submission.title + ': ' + submission.selftext);
+
+	redditData.postTitle = submission.title;
+	redditData.postSelfText = submission.selftext;
 }
 
 module.exports = redditData;
