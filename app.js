@@ -13,26 +13,7 @@ const redditService = require('./services/news/redditService');
 
 let app = express();
 
-let postData = {};
-redditService.on('submission', (submission) => {
-	if (!submission.can_mod_post) {
-		console.log('Poster is not MOD.');
-		return;
-	}
-	
-	if (submission.selftext === '') {
-		console.log('Empty text post.');
-		return;
-	}
-
-	if (submission.title.substring(0, 1) !== '*') {
-		console.log('Post is not defined to be a news post.');
-		return;
-	}
-	
-	console.log(submission.title + ': ' + submission.selftext);
-		
-});
+redditService.submissions.on('submission', (submission) => redditService.filterPostRequirements(submission));
 
 // view engine setup
 app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts/'}));
