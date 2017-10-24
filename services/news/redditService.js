@@ -14,8 +14,8 @@ const reddit = new Snoowrap({
 const client = new Snoostorm(reddit);
 
 const redditStreamOpts = {
-	subreddit: 'arcane',
-	results: 2
+	subreddit: 'caliburnhcf',
+	results: 1
 };
 
 const submissions = client.SubmissionStream(redditStreamOpts);

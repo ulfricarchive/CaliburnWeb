@@ -15,13 +15,23 @@ let app = express();
 
 let postData = {};
 redditService.on('submission', (submission) => {
-	if (submission.stickied !== true) {
-		console.log('New submission NOT stickied: ' + submission);
+	if (!submission.can_mod_post) {
+		console.log('Poster is not MOD.');
 		return;
 	}
-	console.log('New submission stickied: ' + submission);
-	postData.title = submission.title;
-	postData.content = submission.text;
+	
+	if (submission.selftext === '') {
+		console.log('Empty text post.');
+		return;
+	}
+
+	if (submission.title.substring(0, 1) !== '*') {
+		console.log('Post is not defined to be a news post.');
+		return;
+	}
+	
+	console.log(submission.title + ': ' + submission.selftext);
+		
 });
 
 // view engine setup
