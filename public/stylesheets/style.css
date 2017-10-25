@@ -45,10 +45,26 @@ body {
 
 .post-title {
 	margin-bottom: 0;
+	color: #ff7f7d;
+	display: inline;
 }
 
 .post-info {
 	margin-bottom: 1px;
+	display: inline;
+	color: #A9A9A9;
+}
+
+#author {
+	color: #52BFD6;
+}
+
+.post-content {
+	margin-top: 1%;
+}
+
+.post-content h1{
+	font-size: 1.2em;
 }
 
 .news-content {

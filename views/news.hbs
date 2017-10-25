@@ -2,8 +2,8 @@
     {{#each post}}
     <div class="post">
             <h2 class='post-title'>{{title}}</h2>
-            <p class='post-info'>Posted by {{author}} {{time_posted}}</p>
-            <p class='post-content'>{{content}}</p>
+            <p class='post-info'>Posted by <span id='author'>{{author}}</span> {{time_posted}}</p>
+            <div class="post-content">{{{content}}}</div>
     </div>
     {{/each}}
 </div>
