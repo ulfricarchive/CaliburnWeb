@@ -38,8 +38,9 @@ redditData.filterPostRequirements = function(submission) {
 		return;
 	}
 
-	//console.log(submission.title + ': ' + submission.selftext);
-	console.log(submission);
+	console.log('[News submission] author: ' + submission.author.name);
+	console.log('[News submission] title: ' + submission.title);
+	console.log('[News submission] content: ' + submission.selftext);
 
 	redditData.postTitle = submission.title;
 	redditData.postSelfText = submission.selftext;

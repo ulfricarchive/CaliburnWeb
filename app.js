@@ -11,10 +11,15 @@ require('./models/db');
 const index = require('./routes/index');
 const users = require('./routes/users');
 const redditService = require('./services/news/redditService');
+const utils = require('./utils');
 
 let app = express();
-
-redditService.submissions.on('submission', (submission) => redditService.filterPostRequirements(submission));
+//(submission) => redditService.filterPostRequirements(submission)
+redditService.submissions.on('submission', function(submission) {
+	let date = utils.date();
+	console.log(date);
+	redditService.filterPostRequirements(submission);
+});
 
 // view engine setup
 app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts/'}));
