@@ -18,6 +18,7 @@
     "serve-favicon": "~2.4.2",
     "snoostorm": "0.0.5",
     "snoowrap": "^1.14.2",
-    "strict-mode": "^1.1.2"
+    "strict-mode": "^1.1.2",
+    "readline": "0.0.x"
   }
 }
