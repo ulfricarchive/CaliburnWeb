@@ -4,6 +4,6 @@ let newsPostSchema = new mongoose.Schema({
     author: {type: String, required: true},
     title: {type: String, required: true},
     content: {type: String, required: true}
-});
+}); 
 
-mongoose.model('newsPost', newsPostSchema);
+mongoose.model('NewsPost', newsPostSchema);
